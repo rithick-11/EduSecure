@@ -13,6 +13,7 @@ import {
   HiOutlineUser,
   HiOutlineLogout,
   HiOutlineShieldCheck,
+  HiOutlineShare,
 } from 'react-icons/hi';
 
 const navItems = [
@@ -25,6 +26,7 @@ const navItems = [
   { to: '/analytics',    icon: HiOutlineChartBar,     label: 'Analytics' },
   { to: '/use-cases',    icon: HiOutlineLightBulb,    label: 'Use Cases' },
   { to: '/architecture', icon: HiOutlineCube,         label: 'Architecture' },
+  { to: '/share',        icon: HiOutlineShare,        label: 'Share Data' },
   { to: '/profile',      icon: HiOutlineUser,         label: 'Profile' },
 ];
 

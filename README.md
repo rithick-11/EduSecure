@@ -1,4 +1,53 @@
-# EduSecure: Complete Step-by-Step User Guide
+# EduSecure: Cryptographic Educational Data Sharing
+
+**EduSecure** is a full-stack platform that enables educational institutions, students, and third parties to share and compute on sensitive data (like grades and research scores) **without ever exposing the raw data in plaintext**. It achieves this zero-knowledge privacy using **BFV Homomorphic Encryption** (via the `Pyfhel` library). 
+
+The platform supports secure file uploads, mathematical evaluations on ciphertexts (Average, Sum, etc.), and instant zero-knowledge eligibility verification for third parties.
+
+---
+
+## Prerequisites (Required Versions)
+* **Node.js**: v18.0.0 or higher
+* **npm**: v8.0.0 or higher
+* **Python**: v3.9 to v3.11 (Required for compatibility with Pyfhel C++ extensions)
+* **C++ Build Tools**: Required on Windows to compile Homomorphic Encryption libraries.
+
+---
+
+## Running Locally
+
+### 1. Start the Backend (FastAPI)
+Open a terminal and navigate to the backend directory:
+```bash
+cd backend
+# Create and activate a virtual environment (Recommended)
+python -m venv venv
+venv\Scripts\activate  # Windows
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the server
+uvicorn main:app --reload
+```
+The backend will run on `http://localhost:8000`.
+
+### 2. Start the Frontend (React + Vite)
+Open a new terminal and navigate to the frontend directory:
+```bash
+cd frontend
+
+# Install Node modules
+npm install
+
+# Start the development server
+npm run dev
+```
+The frontend will run on `http://localhost:5173`.
+
+---
+
+## Complete Step-by-Step User Guide
 
 Welcome to EduSecure! This documentation explains how to use the platform step-by-step, detailing exactly what happens both in the user interface and under the hood (at the cryptographic level) during each action.
 
@@ -90,3 +139,4 @@ Go to the **History** tab (`/history`). Find your recent computation, click "Dec
 - The backend loads the result ciphertext blob and uses the unlocked BFV Private Key to decrypt it.
 - Finally, the server returns the plaintext array (e.g., the combined grades) back to the frontend for you to see.
 - **Audit Log**: Every action (uploading, computing, decrypting) is permanently recorded in the `audit_logs` table for compliance tracking.
+

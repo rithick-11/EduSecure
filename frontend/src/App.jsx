@@ -13,6 +13,8 @@ import Analytics from './pages/Analytics';
 import UseCases from './pages/UseCases';
 import Architecture from './pages/Architecture';
 import Profile from './pages/Profile';
+import Share from './pages/Share';
+import Verify from './pages/Verify';
 
 function ProtectedRoute({ children }) {
   const { isAuthenticated } = useAuth();
@@ -42,6 +44,9 @@ export default function App() {
           <Route path="/use-cases" element={<ProtectedRoute><UseCases /></ProtectedRoute>} />
           <Route path="/architecture" element={<ProtectedRoute><Architecture /></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+          <Route path="/share" element={<ProtectedRoute><Share /></ProtectedRoute>} />
+          
+          <Route path="/verify/:token" element={<Verify />} />
 
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

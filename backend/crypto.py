@@ -183,3 +183,20 @@ def homomorphic_sum(blob: bytes, pub: bytes, relin: bytes) -> bytes:
     else:
         total = sum(_sim_decrypt_int(b) for b in ct_list)
         return pickle.dumps([_sim_encrypt_int(total)])
+
+
+def homomorphic_scalar_subtract(blob: bytes, scalar: int, pub: bytes, relin: bytes) -> bytes:
+    ct_list = pickle.loads(blob)
+    if HAS_PYFHEL:
+        he = Pyfhel()
+        he.contextGen(**BFV_PARAMS)
+        he.from_bytes_public_key(pub)
+        he.from_bytes_relin_key(relin)
+        results = []
+        for ct_bytes in ct_list:
+            ct = PyCtxt(pyfhel=he); ct.from_bytes(ct_bytes)
+            ct_r = ct - scalar
+            results.append(ct_r.to_bytes())
+    else:
+        results = [_sim_encrypt_int(_sim_decrypt_int(b) - scalar) for b in ct_list]
+    return pickle.dumps(results)

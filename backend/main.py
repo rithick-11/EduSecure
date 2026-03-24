@@ -10,6 +10,7 @@ from routes.keys import router as keys_router
 from routes.files import router as files_router
 from routes.compute import router as compute_router
 from routes.audit import router as audit_router
+from routes.verify import router as verify_router
 
 # ── Rate limiter ──────────────────────────────────────────────────────
 limiter = Limiter(key_func=get_remote_address, default_limits=["120/minute"])
@@ -38,6 +39,7 @@ app.include_router(keys_router)
 app.include_router(files_router)
 app.include_router(compute_router)
 app.include_router(audit_router)
+app.include_router(verify_router)
 
 
 # ── Startup ───────────────────────────────────────────────────────────

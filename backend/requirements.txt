@@ -8,6 +8,7 @@ pyfhel==3.4.2
 cryptography==42.0.8
 python-multipart==0.0.9
 slowapi==0.1.9
+cryptography
 python-dotenv==1.0.1
 pandas==2.2.2
 numpy==1.26.4
