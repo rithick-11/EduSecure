@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import API from '../api/axios';
-import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer } from 'recharts';
 import { MdQueryStats } from 'react-icons/md';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
@@ -18,13 +18,13 @@ export default function Analytics() {
   }, []);
 
   // Charts data
-  const typeCount = fileStats.reduce((acc, f) => {
+  const typeCount = files.reduce((acc, f) => {
     acc[f.data_type] = (acc[f.data_type] || 0) + 1;
     return acc;
   }, {});
   const pieData = Object.entries(typeCount).map(([name, value]) => ({ name, value }));
 
-  const opCount = computeStats.reduce((acc, c) => {
+  const opCount = history.reduce((acc, c) => {
     acc[c.operation] = (acc[c.operation] || 0) + 1;
     return acc;
   }, {});
