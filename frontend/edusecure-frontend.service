@@ -1,0 +1,13 @@
+[Unit]
+Description=EduSecure React Frontend (serve)
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/EduSecure/frontend
+ExecStart=/usr/bin/npx serve -s dist -l 3000
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

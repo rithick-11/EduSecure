@@ -1,4 +1,5 @@
 import time
+import pickle
 from fastapi import APIRouter, Depends, HTTPException, Request
 from sqlalchemy.orm import Session
 
@@ -54,7 +55,6 @@ def run_computation(
 
         elif op == "average":
             sum_blob = homomorphic_sum(files[0].ciphertext_blob, ek.public_key, ek.relin_key)
-            import pickle
             count = len(pickle.loads(files[0].ciphertext_blob))
             # Cannot do true division on BFV integers — store sum and count for client-side division
             result_blob = sum_blob
