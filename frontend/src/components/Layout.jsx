@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import {
@@ -14,6 +15,8 @@ import {
   HiOutlineLogout,
   HiOutlineShieldCheck,
   HiOutlineShare,
+  HiMenu,
+  HiX,
 } from 'react-icons/hi';
 
 const navItems = [
@@ -33,15 +36,34 @@ const navItems = [
 export default function Layout({ children }) {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const handleLogout = () => {
     logout();
     navigate('/login');
   };
 
+  const closeSidebar = () => setIsSidebarOpen(false);
+
   return (
     <div className="app-layout">
-      <aside className="sidebar">
+      {/* Mobile Header */}
+      <div className="mobile-header">
+        <button className="mobile-header-btn" onClick={() => setIsSidebarOpen(true)}>
+          <HiMenu />
+        </button>
+        <div className="mobile-header-title">
+          <HiOutlineShieldCheck style={{ color: 'var(--accent)' }} /> EduSecure
+        </div>
+      </div>
+
+      {/* Mobile Overlay */}
+      <div 
+        className={`mobile-overlay ${isSidebarOpen ? 'open' : ''}`} 
+        onClick={closeSidebar}
+      />
+
+      <aside className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
           <div className="sidebar-logo">
             <div className="logo-icon"><HiOutlineShieldCheck /></div>
@@ -55,6 +77,7 @@ export default function Layout({ children }) {
               key={to}
               to={to}
               end={to === '/'}
+              onClick={closeSidebar}
               className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
             >
               <Icon className="icon" />

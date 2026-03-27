@@ -79,7 +79,7 @@ export default function Share() {
             <label>Confirm Your Password</label>
             <input 
               type="password" 
-              className="form-control" 
+              className="form-input" 
               placeholder="Required to securely sign the verification token"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -109,11 +109,11 @@ export default function Share() {
               <input 
                 type="text" 
                 readOnly 
-                className="form-control" 
+                className="form-input" 
                 value={generatedLink} 
-                style={{ background: 'var(--bg-lighter)', color: 'var(--text-primary)', border: 'none' }}
+                style={{ background: 'var(--bg-surface)', color: 'var(--text-primary)' }}
               />
-              <button className="btn btn-outline" onClick={copyToClipboard} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <button type="button" className="btn btn-secondary" onClick={copyToClipboard} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                 <MdContentCopy /> {copied ? 'Copied!' : 'Copy'}
               </button>
             </div>

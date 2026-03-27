@@ -59,7 +59,7 @@ export default function Verify() {
               <label>Field / Column to Verify</label>
               <input 
                 type="text" 
-                className="form-control" 
+                className="form-input" 
                 placeholder="e.g. math_score, total_points"
                 value={columnName}
                 onChange={(e) => setColumnName(e.target.value)}
@@ -70,7 +70,7 @@ export default function Verify() {
               <label>Minimum Required Score</label>
               <input 
                 type="number" 
-                className="form-control" 
+                className="form-input" 
                 placeholder="e.g. 85"
                 value={requiredScore}
                 onChange={(e) => setRequiredScore(e.target.value)}
@@ -107,7 +107,7 @@ export default function Verify() {
             )}
 
             <button 
-              className="btn btn-outline" 
+              className="btn btn-secondary" 
               style={{ marginTop: 32 }}
               onClick={() => setResult(null)}
             >
@@ -119,7 +119,7 @@ export default function Verify() {
       </div>
 
       <div style={{ marginTop: 32 }}>
-        <button className="btn btn-outline" onClick={() => navigate('/')} style={{ border: 'none' }}>
+        <button className="btn btn-secondary" onClick={() => navigate('/')}>
            Go to EduSecure Homepage
         </button>
       </div>
