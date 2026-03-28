@@ -92,7 +92,7 @@ def encrypt_values(values: list, public_key: bytes, relin_key: bytes) -> bytes:
         he.contextGen(**BFV_PARAMS)
         he.from_bytes_public_key(public_key)
         he.from_bytes_relin_key(relin_key)
-        cts = [he.encryptInt(int(v)).to_bytes() for v in arr]
+        cts = [he.encryptInt(np.array([v], dtype=np.int64)).to_bytes() for v in arr]
     else:
         cts = [_sim_encrypt_int(int(v)) for v in arr]
     return pickle.dumps(cts)
